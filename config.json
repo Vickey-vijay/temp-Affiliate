@@ -1,0 +1,10 @@
+{
+    "email": {
+      "sender_email": "youremail@example.com",
+      "receiver_email": "clientemail@example.com",
+      "smtp_server": "smtp.gmail.com",
+      "smtp_port": 587,
+      "smtp_password": "your_app_password_or_email_password"
+    }
+  }
+  
