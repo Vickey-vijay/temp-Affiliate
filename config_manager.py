@@ -104,5 +104,11 @@ class ConfigManager:
         with open(self.config_file, 'w') as configfile:
             self.config.write(configfile)
 
-    def get_email_config(self):
-        return self.config.get("email", {})
+    def get_email_config(self) -> dict:
+        """
+        Retrieves the Email configuration settings.
+        :return: A dictionary of Email settings.
+        """
+        if 'Email' in self.config:
+            return dict(self.config['Email'])
+        return {}  # Return empty dict if no Email section

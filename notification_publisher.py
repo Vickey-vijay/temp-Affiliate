@@ -11,15 +11,13 @@ class NotificationPublisher:
     and sending email reports.
     """
     def __init__(self, config_manager):
-        """
-        Initialize the NotificationPublisher with configuration settings.
-        :param config_manager: Instance of ConfigManager for retrieving settings.
-        """
         self.config_manager = config_manager
         self.telegram_config = self.config_manager.get_telegram_config()
         self.whatsapp_config = self.config_manager.get_whatsapp_config()
-        # Assume Email settings are available under an 'Email' section in the config file.
-        # self.email_config = self.config_manager.config.get('Email', {})
+        # Initialize email_config properly
+        self.email_config = self.config_manager.get_email_config()
+
+
 
     def telegram_push(self, product: dict):
         """

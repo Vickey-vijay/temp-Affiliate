@@ -78,3 +78,11 @@ class HandsOffModeController:
         })
 
         print(f"✅ Published (Hands-Off): {product.get('title')} @ ₹{product.get('current_price')}")
+
+    def process_and_publish(self):
+        """
+        Process and publish products in hands-off mode.
+        This is an alias for run_hands_off to match the function name used in scheduler.
+        """
+        self.run_hands_off()
+

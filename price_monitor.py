@@ -8,12 +8,14 @@ class PriceMonitor:
     Class responsible for monitoring product prices, comparing them with new data,
     and determining whether to update the database.
     """
-    def __init__(self, products_collection: pymongo.collection.Collection):
+    def __init__(self, products_collection: pymongo.collection.Collection, amazon_config=None):
         """
         Initialize the PriceMonitor with a MongoDB collection for products.
         :param products_collection: MongoDB collection containing product details.
+        :param amazon_config: Amazon configuration settings (optional).
         """
         self.products_collection = products_collection
+        self.amazon_config = amazon_config
 
     def check_price_update(self, product: dict, new_price: float) -> bool:
         """
@@ -86,3 +88,10 @@ class PriceMonitor:
             return round(new_price, 2)
         except (ValueError, TypeError):
             return None
+
+    def monitor_products(self):
+        """
+        Monitor all products and update prices as needed.
+        This is the method that will be called by the scheduler.
+        """
+        self.monitor_all_products(self.fetch_new_price)

@@ -8,7 +8,7 @@ if (!db.getCollectionNames().includes("login_info")) {
     db.createCollection("login_info");
     db.login_info.insertOne({
         username: "admin",
-        password: "admin123"  // hash this in production!
+        password: "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9"  // hash of "admin123"
     });
     print("✅ login_info collection created.");
 } else {

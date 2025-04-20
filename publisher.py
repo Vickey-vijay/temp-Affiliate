@@ -9,8 +9,9 @@ import pandas as pd
 from utils.email_sender import EmailSender  # You can implement this in another file
 from utils.whatsapp_sender import WhatsappSender  # You can implement this in another file
 
+
 class Publisher:
-    def __init__(self, mongo_uri="mongodb://localhost:27017/", db_name="your_database_name"):
+    def __init__(self, mongo_uri="mongodb://localhost:27017/", db_name="your_database_name", notification_publisher = None):
         self.client = MongoClient(mongo_uri)
         self.db = self.client[db_name]
         self.products_collection = self.db["products"]
@@ -18,6 +19,10 @@ class Publisher:
         self.config = self.load_config()
         self.whatsapp = WhatsappSender()
         self.email_sender = EmailSender()
+        self.products_collection = self.db["products"]
+        # self.published_collection = published_collection
+        self.notification_publisher = notification_publisher
+        self.config = self.load_config()
 
     def load_config(self):
         try:
